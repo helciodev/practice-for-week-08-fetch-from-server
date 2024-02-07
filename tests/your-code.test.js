@@ -81,13 +81,14 @@ describe("fetch call helper functions", () => {
       expect.assertions(2);
       const res = await postNewDog();
       const [[key, value]] = Object.entries(res.options.headers);
-      console.log(key, value);
+
       expect(/^Content-Type$/i.test(key)).toBe(true);
       expect(/^application\/x-www-form-urlencoded$/i.test(value)).toBe(true);
     });
-    test.skip("should send the appropriate body", async () => {
+    test("should send the appropriate body", async () => {
       expect.assertions(3);
       const res = await postNewDog();
+
       expect(res.options.body instanceof URLSearchParams).toBe(true);
       expect(res.options.body.has("name")).toBe(true);
       expect(res.options.body.has("age")).toBe(true);
@@ -95,22 +96,22 @@ describe("fetch call helper functions", () => {
   });
 
   describe("postNewDogV2(name, age)", () => {
-    test.skip("should return a fetch call", (done) => {
+    test("should return a fetch call", (done) => {
       expect(() => returnsPromise(postNewDogV2)).not.toThrowError();
       done();
     });
-    test.skip("should make a request to the correct endpoint", async () => {
+    test("should make a request to the correct endpoint", async () => {
       const res = await postNewDogV2();
       expect(res.url).toBe("/dogs");
     });
-    test.skip("should set the appropriate headers", async () => {
+    test("should set the appropriate headers", async () => {
       expect.assertions(2);
       const res = await postNewDogV2("Rosie", 1);
       const [[key, value]] = Object.entries(res.options.headers);
       expect(/^Content-Type$/i.test(key)).toBe(true);
       expect(/^application\/x-www-form-urlencoded$/i.test(value)).toBe(true);
     });
-    test.skip("should send the appropriate body", async () => {
+    test("should send the appropriate body", async () => {
       expect.assertions(5);
       const res = await postNewDogV2("ckyussk1q0000oiv5842u3dri", 8);
       expect(res.options.body instanceof URLSearchParams).toBe(true);
@@ -123,23 +124,23 @@ describe("fetch call helper functions", () => {
   });
 
   describe("deleteDog(id)", () => {
-    test.skip("should return a fetch call", (done) => {
+    test("should return a fetch call", (done) => {
       expect(() => returnsPromise(deleteDog)).not.toThrowError();
       done();
     });
-    test.skip("should set the appropriate method", async () => {
+    test("should set the appropriate method", async () => {
       expect.assertions(1);
       const res = await deleteDog(1);
       expect(/POST/i.test(res.options.method)).toBe(true);
     });
-    test.skip("should set the appropriate headers", async () => {
+    test("should set the appropriate headers", async () => {
       expect.assertions(2);
       const res = await deleteDog(1);
       const [[key, value]] = Object.entries(res.options.headers);
       expect(/AUTH/i.test(key)).toBe(true);
       expect(value).toBe("ckyut5wau0000jyv5bsrud90y");
     });
-    test.skip("should be sent to the correct endpoint", async () => {
+    test("should be sent to the correct endpoint", async () => {
       expect.assertions(1);
       const res = await deleteDog(90);
       expect(res.url).toBe("/dogs/90/delete");
