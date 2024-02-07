@@ -7,7 +7,11 @@ export function getDogNumberTwo() {
 }
 
 export function postNewDog() {
-  // Your code here
+  return window.fetch("/dogs", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "name=marvel&age=5",
+  });
 }
 
 export function postNewDogV2(name, age) {

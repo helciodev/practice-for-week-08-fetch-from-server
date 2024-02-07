@@ -64,20 +64,20 @@ describe("fetch call helper functions", () => {
   });
 
   describe("postNewDog()", () => {
-    test.skip("should return a fetch call", (done) => {
+    test("should return a fetch call", (done) => {
       expect(() => returnsPromise(postNewDog)).not.toThrowError();
       done();
     });
-    test.skip("should make a request to the correct endpoint", async () => {
+    test("should make a request to the correct endpoint", async () => {
       const res = await postNewDog();
       expect(res.url).toBe("/dogs");
     });
-    test.skip("should set the correct method", async () => {
+    test("should set the correct method", async () => {
       expect.assertions(1);
       const res = await postNewDog();
       expect(/^POST$/i.test(res.options.method)).toBe(true);
     });
-    test.skip("should set the appropriate headers", async () => {
+    test("should set the appropriate headers", async () => {
       expect.assertions(2);
       const res = await postNewDog();
       const [[key, value]] = Object.entries(res.options.headers);
